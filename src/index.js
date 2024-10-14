@@ -26,44 +26,6 @@ container.addEventListener('touchmove', event => {
     event.preventDefault();
 }, { passive: false });
 
-
-
-function scrollCarouselRight() {
-    const container = document.querySelector('.container');
-    const totalImgs = imgs.length;
-    let width = document.querySelector('.carousel').offsetWidth;
-    let gapLength = (width/totalImgs);
-    console.log(width + " " + gapLength);
-    if (container) {
-        container.scrollBy({ left: gapLength, behavior: 'smooth' });
-    }
-}
-
-function scrollCarouselLeft() {
-    const container = document.querySelector('.container');
-    const totalImgs = imgs.length;
-    let width = document.querySelector('.carousel').offsetWidth;
-    let gapLength = (width/totalImgs);
-    console.log(width + " " + gapLength);
-    if (container) {
-        container.scrollBy({ right: gapLength });
-    }
-}
-
-const scrollButtonRight = document.querySelector('.scroll-right-button');
-
-    scrollButtonRight.addEventListener('click', () => {
-        console.log('scrolling right');
-        scrollCarouselRight()
-    });
-
-const scrollButtonLeft = document.querySelector('.scroll-left-button');
-    
-        scrollButtonLeft.addEventListener('click', () => {
-            console.log('scrolling left');
-            scrollCarouselLeft()
-        });
-
 function scrollToSlide(slideId) {
     const slide = document.getElementById(slideId);
     
@@ -90,6 +52,15 @@ function scrollToSlide(slideId) {
 
     }
 
+function toggleActiveDots(dotsContainer, a) {
+    //Toggle active class on the dots (actually work on a tag)
+    const as = dotsContainer.querySelectorAll('a');
+    as.forEach(a => {
+        a.classList.remove('active');
+    });
+    a.classList.add('active');
+}
+
         const createNavigationDots = () => {
             const container = document.querySelector('.container');
             const totalImgs = imgs.length;
@@ -107,16 +78,17 @@ function scrollToSlide(slideId) {
                 let slideId = `slide-${i+1}`;
                 imgs[i].closest('.carousel-item').id = slideId //set id for each image to be referenced by the dots
                 a.appendChild(dot);
+
+                if (i === 0) {
+                    a.classList.add('active');
+                }
+
                 a.addEventListener('click', (e) => {
                     e.preventDefault();
                     scrollToSlide(slideId);
 
                     //Toggle active class on the dots (actually work on a tag)
-                    const as = dotsContainer.querySelectorAll('a');
-                    as.forEach(a => {
-                        a.classList.remove('active');
-                    });
-                    a.classList.add('active');
+                    toggleActiveDots(dotsContainer, a)
                 });
 
                 dotsContainer.appendChild(a);
@@ -127,4 +99,43 @@ function scrollToSlide(slideId) {
 
         createNavigationDots();
 
-        
+function scrollRight() {
+    const container = document.querySelector('.container');
+    const currentImage = document.querySelector('.active').querySelector('span').id;
+    console.log(currentImage);
+
+    if (currentImage < imgs.length) {
+        const nextImage = parseInt(currentImage) + 1;
+        const nextSlide = document.getElementById(`slide-${nextImage}`);
+        const nextDot = document.querySelector(`a[href="#slide-${nextImage}"]`);
+        scrollToSlide(`slide-${nextImage}`);
+        console.log(nextImage);
+        toggleActiveDots(document.querySelector('.dots-container'), nextDot);
+    } else {
+        scrollToSlide('slide-1');
+        toggleActiveDots(document.querySelector('.dots-container'), document.querySelector('a[href="#slide-1"]'));
+    }
+
+}
+
+function scrollLeft() {
+    const container = document.querySelector('.container');
+    const currentImage = document.querySelector('.active').querySelector('span').id;
+    console.log(currentImage);
+
+    if (currentImage > 1) {
+        const nextImage = parseInt(currentImage) - 1;
+        const nextSlide = document.getElementById(`slide-${nextImage}`);
+        const nextDot = document.querySelector(`a[href="#slide-${nextImage}"]`);
+        scrollToSlide(`slide-${nextImage}`);
+        console.log(nextImage);
+        toggleActiveDots(document.querySelector('.dots-container'), nextDot);
+    } else {
+        scrollToSlide(`slide-${imgs.length}`);
+        toggleActiveDots(document.querySelector('.dots-container'), document.querySelector('a[href="#slide-1"]'));
+    }
+
+}
+
+document.querySelector('.scroll-right-button').addEventListener('click', () => {scrollRight()}); 
+document.querySelector('.scroll-left-button').addEventListener('click', () => {scrollLeft()});             

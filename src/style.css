@@ -58,6 +58,8 @@ html {
     height: 8px;
     width: 8px;
     border-radius: 50%;
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
 }
 
 .dot-link.active {
