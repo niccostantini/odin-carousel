@@ -18,30 +18,45 @@ imgs.forEach(img => {
 
 const container = document.querySelector('.container');
 
+//Disable scroll on the carousel
 container.addEventListener('wheel', event => {
     event.preventDefault();
-}, { passive: false });
+    }, { passive: false });
 
+//Disable touchmove on the carousel
 container.addEventListener('touchmove', event => {
     event.preventDefault();
-}, { passive: false });
+    }, { passive: false });
+
+//Disable drag on the carousel
+container.addEventListener('dragstart', event => {
+    event.preventDefault();
+    }, { passive: false });
+
 
 function scrollToSlide(slideId) {
     const slide = document.getElementById(slideId);
     
+    //Handle the case where the slide ID is invalid
     if (!slide) {
         console.error(`Slide with ID "${slideId}" not found.`);
         return;
     }
     
-    // Scroll the carousel wrapper to the slide's position
+    // *Scroll the carousel wrapper to the slide's position*
     const carouselWrapper = document.querySelector('.container');
     
     // Calculate the horizontal center position for the slide
+    // (slide.offsetLeft is the distance from the left edge of the slide to the left edge of the carousel wrapper)
     const slideLeft = slide.offsetLeft;
+
+    // Get the width of the carousel wrapper
     const wrapperWidth = carouselWrapper.offsetWidth;
+
+    // Get the width of the slide
     const slideWidth = slide.offsetWidth;
     
+    // Calculate the position to scroll to
     const scrollToPosition = slideLeft - (wrapperWidth / 2) + (slideWidth / 2);
     
     // Scroll to the calculated position, centering the slide
