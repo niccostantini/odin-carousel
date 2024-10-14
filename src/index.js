@@ -154,4 +154,6 @@ function scrollLeft() {
 }
 
 document.querySelector('.scroll-right-button').addEventListener('click', () => {scrollRight()}); 
-document.querySelector('.scroll-left-button').addEventListener('click', () => {scrollLeft()});             
+document.querySelector('.scroll-left-button').addEventListener('click', () => {scrollLeft()});
+
+setInterval(scrollRight, 5000);
