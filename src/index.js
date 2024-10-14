@@ -109,7 +109,8 @@ function toggleActiveDots(dotsContainer, a) {
                 dotsContainer.appendChild(a);
             }
 
-            container.closest('.first-level').appendChild(dotsContainer);
+            const arrows = document.querySelector('.carousel-nav-arrows');
+            container.closest('.first-level').insertBefore(dotsContainer, arrows);
         };
 
         createNavigationDots();
