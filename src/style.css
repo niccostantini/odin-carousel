@@ -1,3 +1,7 @@
+html {
+    scroll: smooth;
+}
+
 .first-level {
     display: flex; 
     flex-direction: column;
@@ -12,14 +16,13 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    align-items: center;
     border: none;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     height: 300px;
     width: 500px;
     overflow: scroll;
-    scrollbar-width: none;
+    scrollbar-width: 0px;
 }
 
 .carousel {
@@ -28,12 +31,35 @@
     z-index: -1;
     display: flex;
     flex-direction: row;
-    gap: 60px;
+
     padding-right: 100px;
+}
+
+.carousel-item{
+    width: 500px;
 }
 
 .carousel-item img {
     height: 200px;
     width: 300px;
     box-shadow:  0px 30px 40px -25px rgba(0, 0, 0, 1);
+}
+
+.dots-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    bottom: 10px;
+    padding: 20px 0
+}
+
+.dot-link {
+    background-color: #bdbcbc;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+}
+
+.dot-link.active {
+    background-color: #707070;
 }
