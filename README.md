@@ -9,6 +9,8 @@ This package provides a simple and customizable carousel component for displayin
 - Auto-scroll with smooth animations
 - Customizable styles
 
+<img src="https://raw.github.com/niccostantini/odin-carousel/main/demo.gif">
+
 ## Installation
 
 To install the package, use npm:
