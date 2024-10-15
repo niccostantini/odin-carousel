@@ -1,6 +1,10 @@
 import NormalizeStyle from './normalize.css';
 import Style from './style.css';
 
+exports.printMsg = function() {
+    console.log("Thank you for using my package!");
+  }
+
 const imgs = document.querySelectorAll('.carousel-item img');
 
 imgs.forEach(img => {
