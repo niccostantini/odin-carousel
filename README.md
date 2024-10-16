@@ -65,7 +65,7 @@ To set up the carousel, your HTML should follow this structure:
 To use the carousel, simply ensure your HTML follows the required structure, then include the script in your project:
 
 ```javascript
-import './niccost-carousel';
+import './autoscroll-carousel';
 ```
 
 The carousel will automatically initialize when the DOM is loaded, handling dot creation, navigation, and auto-scrolling.
