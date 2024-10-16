@@ -119,16 +119,6 @@ Feel free to customize dimensions, colors, or add more advanced transitions as p
 - **Prevent default actions**: The carousel disables right-click context menus and drag interactions on the images for a more streamlined experience.
 - **Auto-scroll**: The carousel automatically scrolls to the next image every 5 seconds. This can be adjusted in the script.
 
-## Build Process
-
-This package is bundled with Webpack. To build the project, run the following command:
-
-```bash
-npm run build
-```
-
-The final bundled files will be output in the `dist/` folder. This folder is excluded from version control but is included when publishing the package.
-
 ## License
 
 This project is licensed under the ISC License. See the [./license](LICENSE) file for details.
