@@ -16,7 +16,7 @@ This package provides a simple and customizable carousel component for displayin
 To install the package, use npm:
 
 ```bash
-npm install niccost-carousel
+npm install autoscroll-carousel
 ```
 
 Include the necessary CSS and JavaScript in your project after installation.
